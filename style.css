@@ -1,0 +1,852 @@
+/*Reset básico para todos os elementos*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*Definições gerais para body e html*/
+body, html {
+  height: 100%;
+  font-family: "Libertinus Mono", monospace;
+  color: #fff;
+  scroll-behavior: smooth; /* Rolagem suave ao clicar em links internos */
+}
+
+/* Estilização do vídeo de fundo */
+.video-bg {
+  position: fixed; /* Fixa o vídeo na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta o vídeo para cobrir toda a área sem distorcer */
+  z-index: -1; /* Fica atrás de todo o conteúdo */
+}
+
+/* Navbar principal */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+/* Parte esquerda da navbar */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.navbar-left img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain; /* Mantém a proporção da imagem */
+}
+
+/* Parte direita da navbar */
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.navbar-right a {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.navbar-right a:hover {
+  color: #F5DEB3; /* Cor do link ao passar o mouse */
+}
+
+.navbar-right a::after {
+  content: ''; /* Cria linha inferior animada*/
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #F5DEB3;
+  transition: width 0.3s ease;
+}
+
+.navbar-right a:hover::after {
+  width: 100%;
+}
+
+/* Camada de overlay sobre o vídeo */
+.intro {
+  height: 100vh; /* Ocupa toda a altura da tela */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.35); /* Escurece o vídeo */
+}
+
+/* Texto central da intro */
+.center-text {
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size: 24px;
+  margin-top: -100px;
+  letter-spacing: 2px;
+}
+
+/* Logo grande centralizada */
+.logo {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12vw;
+  font-weight: bold;
+  text-transform: lowercase;
+  text-align: center;
+  color: rgba(246, 241, 241, 0.512);
+  mix-blend-mode: screen; /* Mistura com fundo */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Ícones circulares laterais */
+.side-icons {
+  position: absolute;
+  right: 20px;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.circle:hover {
+  background-color: #FFDEAD;
+  border-color: #FFDEAD;
+}
+
+/* Seções principais do site */
+.section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.675);
+  scroll-margin-top: 20px;
+}
+
+.section h2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: rgba(246, 241, 241, 0.601);
+  text-align: center;
+}
+
+.section p {
+  font-family: 'Times New Roman', Times, serif;
+  max-width: 800px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+/* Cards de conteúdo dentro de seções */
+.section-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.content-card {
+  width: 300px;
+  height: 400px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card p {
+  flex-grow: 1;
+  word-wrap: break-word;
+  overflow-y: auto; /* Scroll interno se necessário */
+  line-height: 1.4;
+  padding-right: 5px;
+}
+
+/* Scrollbar personalizada para os cards */
+.content-card p::-webkit-scrollbar{
+  width: 6px;
+}
+
+.content-card p::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+.content-card p::-webkit-scrollbar-thumb{
+  background-color: rgba(255, 255, 173, 0);
+  width: 6px;
+  border-radius: 3px;
+}
+
+.content-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card h3 {
+  color: #FFDEAD;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  height: auto;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.content-card p {
+  flex-grow: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Layout de duas colunas */
+.two-columns {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;
+  margin-top: 40px;
+}
+
+.main-column { 
+  flex: 6; /* Coluna maior */
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  transition: transform 0.3s ease;
+}
+
+.main-column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Container do preview do lobo */
+#wolf-preview {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Partes do lobo sobrepostas */
+.wolf-part {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  transform: translateX(0px) translateY(0px);
+  transition: all 0.3s ease;
+}
+
+/* Cada parte específica do lobo: wolf-body, fur, earsColor, earsShape, eyesColor, eyesShape, focinho*/
+
+#wolf-body {
+  z-index: 2;
+}
+
+#wolf-fur {
+  z-index: 1;
+}
+
+#wolf-earsColor, #wolf-earsShape {
+  z-index: 3;
+}
+
+#wolf-eyesColor, #wolf-eyesShape {
+  z-index: 6;
+}
+
+#wolf-focinho {
+  z-index: 7;
+}
+
+/* Coluna lateral com controles */
+.side-column {
+  flex: 4;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 30px;
+  transition: transform 0.3s ease;
+}
+
+.side-column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.side-column label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.side-column select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.316);
+  color: #000000;
+}
+
+.side-column button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: #FFDEAD;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.side-column button:hover {
+  background: #F5DEB3;
+  transform: scale(1.05);
+}
+
+/* Botão voltar ao topo */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #FFDEAD;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+}
+
+.back-to-top.show {
+  opacity: 1; /* Mostra quando ativo */
+}
+
+.back-to-top:hover {
+  background: #F5DEB3;
+  transform: scale(1.1);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navbar-right {
+    max-width: 100%;
+    gap: 15px;
+  }
+
+  .center-text {
+    margin-top: 0;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .section-content {
+    flex-direction: column;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  .two-columns {
+    flex-direction: column;
+  }
+
+  #wolf-preview {
+    width: 380px;
+    height: 30px;
+  }
+}
+
+/* Bloco de explicação científica */
+.explanation {
+  font-family: 'Times New Roman', Times, serif;
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1000px;
+}
+
+.explanation h3 {
+  color: #FFDEAD;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.explanation-columns {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.explanation-column {
+  flex: 1;
+  background: rgba(0, 0, 0, 0);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.explanation-column h4 {
+  color: #FFDEAD;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #FFDEAD;
+  padding-bottom: 5px;
+}
+
+.space {
+  width: 20px;
+}
+
+/* Visualização de DNA */
+.dna-visualization {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  font-family: monospace;
+  position: relative;
+  overflow: hidden;
+}
+
+.dna-visualization h4 {
+  margin-bottom: 12px;
+  color: #FFDEAD;
+  text-align: center;
+  border-bottom: 1px solid #FFDEAD;
+  padding-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.dna-helix-container {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+  height: 100px;
+  position: relative;
+}
+
+.dna-helix {
+  position: relative;
+  width: 180px;
+  height: 100%;
+}
+
+/* Cada fio da hélice */
+.dna-strand {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #FFDEAD, transparent);
+}
+
+/* Fio esquerdo */
+.dna-strand.left {
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+/* Fio direito */
+.dna-strand.right {
+  left: 60%;
+  transform: translateX(-50%);
+}
+
+/* Ligações horizontais entre nucleotídeos */
+.base-pair {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/*Cada nucleotídeo com cores específicas */
+
+.nucleotide {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.nucleotide-a {
+  background-color: #FF6B6B;
+}
+
+.nucleotide-t {
+  background-color: #4ECDC4;
+}
+
+.nucleotide-c {
+  background-color: #FFE66D;
+}
+
+.nucleotide-g {
+  background-color: #9b59b6;
+}
+
+/* Conector entre pares de nucleotídeos */
+.connector {
+  position: absolute;
+  height: 2px;
+  background-color: rgba(255, 222, 173, 0.7);
+  z-index: 1;
+}
+
+/* Informações detalhadas dos genes */
+.gene-info {
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  max-height: 120px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+}
+
+.gene-info::-webkit-scrollbar {
+  width: 4px;
+}
+
+.gene-info::-webkit-scrollbar-thumb {
+  background: #FFDEAD;
+  border-radius: 10px;
+}
+
+/* Cada gene listado*/
+.gene-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+ /* Nome do gene */
+.gene-name {
+  color: #FFDEAD;
+}
+
+/* Valor do gene */
+.gene-value {
+  font-weight: bold;
+  position: relative;
+  cursor: help;
+}
+
+.gene-value:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* Ajusta altura máxima do gene-info para casos maiores */
+.gene-info { max-height: 200px; }
+
+/* Legenda do DNA*/
+.dna-legend {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .dna-helix-container {
+    height: 80px;
+  }
+  
+  .dna-helix {
+    width: 150px;
+  }
+  
+  .nucleotide {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .explanation-columns {
+    flex-direction: column;
+  }
+  
+  .space {
+    display: none;
+  }
+}
+
+/* Estatísticas do DNA em bloco horizontal */
+.dna-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  color: #FFDEAD;
+  font-weight: bold;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.gene-value {
+  position: relative;
+  cursor: help;
+}
+
+.gene-value:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.gene-info {
+  max-height: 200px;
+}
+
+/* Responsividade do bloco de estatísticas */
+@media (max-width: 768px) {
+  .dna-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Legenda das cores do DNA */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+}
+
+/* Estrutura da explicação científica e destaques de tecnologia */
+.explanation-content {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Texto científico na explicação */
+.science-text {
+  flex: 2;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+
+/* Parágrafos dentro do texto científico */
+.science-text p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Destaques dentro do texto científico */
+.science-text strong {
+  color: #FFDEAD;
+}
+
+/* Container da coluna de destaques tecnológicos */
+.technology-highlights {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 3px solid #FFDEAD;
+}
+
+/* Título da coluna de destaques tecnológicos */
+.technology-highlights h4 {
+  color: #FFDEAD;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Lista de itens tecnológicos */
+.tech-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Cada item tecnológico */
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  transition: transform 0.3s ease; /* Animação suave ao interagir */
+}
+
+/* Efeito de hover nos itens tecnológicos */
+.tech-item:hover {
+  transform: translateX(5px);
+  background: rgba(255, 222, 173, 0.1);
+}
+
+/* Ícone dentro do item tecnológico */
+.tech-icon {
+  font-size: 1.2rem; /* Tamanho do ícone */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .explanation-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .science-text p {
+    font-size: 1rem;
+  }
+  
+  .tech-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .tech-item {
+    flex: 1;
+    min-width: 120px;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+}
+
+/* Ajuste final do ícones tecnológicos*/
+.tech-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle; 
+    margin-right: 0.3em;   
+}
+
+
